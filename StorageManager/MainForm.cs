@@ -51,7 +51,7 @@ namespace StorageManager
                         Name = dateText
                     };
 
-                    // Добавление дочерних узлов — ID паллет
+                    // Добавление дочерних узлов - ID паллет
                     foreach (var pallet in group)
                     {
                         var childNode = new TreeNode(pallet.ID.ToString())
@@ -121,8 +121,9 @@ namespace StorageManager
             {
                 _selectedPallet = _groupedPallets[treeView1.SelectedNode.Parent.Index][treeView1.SelectedNode.Index];
                 PrintPalletInfo(_selectedPallet);
-                PrintBoxInfo(_selectedPallet.Boxes.First());
                 numericUpDown3.Maximum = _selectedPallet.Boxes.Count - 1;
+                numericUpDown3.Value = 0;
+                numericUpDown3_ValueChanged(numericUpDown3, new EventArgs());
             }
         }
 
@@ -132,8 +133,9 @@ namespace StorageManager
             {
                 _selectedPallet = mostFreshPallets[listBox1.SelectedIndex];
                 PrintPalletInfo(_selectedPallet);
-                PrintBoxInfo(_selectedPallet.Boxes.First());
                 numericUpDown3.Maximum = _selectedPallet.Boxes.Count - 1;
+                numericUpDown3.Value = 0;
+                numericUpDown3_ValueChanged(numericUpDown3, new EventArgs());
             }
         }
 
@@ -155,6 +157,13 @@ namespace StorageManager
 
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
         {
+            if (_selectedPallet is null)
+                return;
+            if (_selectedPallet.Boxes is null)
+                return;
+            if (_selectedPallet.Boxes.Count == 0)
+                return;
+
             PrintBoxInfo(_selectedPallet.Boxes.ToArray()[(int)numericUpDown3.Value]);
         }
     }
