@@ -1,1 +1,1 @@
-![Скриншот](https://i.postimg.cc/NjRFv5HF/appimage.png)
+![Скриншот](https://i.postimg.cc/VNDYzMLf/appimage.png)
